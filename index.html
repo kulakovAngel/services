@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <heder>
+    </heder>
+    <main>
+      <section>
+        <h2>Auth Form</h2>
+        <form action="/api/auth/login" method="POST">
+          <input type="text" name="login" placeholder="Lofin*" required>
+          <input type="password" name="password" placeholder="Password*" required>
+          <input type="submit" value="Login">
+        </form>
+        <div class="alert"></div>
+        <script>
+          const form = document.forms[0];
+          const alert = document.getElementsByClassName('alert')[0];
+          form.addEventListener('submit', handleSubmit);
+          function handleSubmit(e) {
+            e.preventDefault();
+            const inputs = e.target.getElementsByTagName('input');
+            const login = inputs[0].value;
+            const password = inputs[1].value;
+            const JSONtoServer = JSON.stringify({login, password});
+            
+            const xhr = new XMLHttpRequest();
+            
+            xhr.open('POST', '/api/auth/login', );
+            xhr.send(JSONtoServer);
+            xhr.onerror = function(e) {
+              console.warn(e);
+            }
+            xhr.onload = function() {
+              const res = JSON.parse(xhr.response);
+              if (res.name) {
+                alert.textContent = `Hello, dear ${res.name} ${res.jwt}`;
+                if (alert.classList.contains('error')) {
+                    alert.classList.remove('error');
+                }
+                alert.classList.add('success');
+              } else {
+                alert.textContent = res.error;
+                if (alert.classList.contains('success')) {
+                    alert.classList.remove('success');
+                }
+                alert.classList.add('error');
+              }
+            }
+            
+          }
+        </script>
+      </section>
+      <section>
+        <h2>API</h2>
+        <pre>
+          <b>GET:</b><br>
+          http://new.services/api/orders/<br>
+          http://new.services/api/orders/:ID<br>
+          <br>
+          <br>
+          <b>POST:</b><br>
+          http://new.services/api/auth/signin<br>
+          {"name":"vas","login":"vas","password":"vas"}<br>
+          <br>
+          http://new.services/api/auth/login<br>
+          {"name":"vas","login":"vas","password":"vas"}<br>
+          <br>
+          http://new.services/api/orders/<br>
+          {"id_service":"1","date":"2019-11-21"}<br>
+          <br>
+          <br>
+          <b>PUT:</b><br>
+          http://new.services/api/orders/:ID<br>
+          {"id_service":"1","date":"2019-12-01","done":"1"}<br>
+          <br>
+          <br>
+          <b>DELETE:</b><br>
+          http://new.services/api/orders/:ID<br>
+        </pre>
+      </section>
+    </main>
+    <footer>
+    </footer>
+  </body>
+</html>

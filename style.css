@@ -1,0 +1,51 @@
+form {
+  width: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 1px 1px 4px 0px;
+}
+
+form input {
+  padding: 12px;
+  margin: 8px;
+  border: none;
+  outline: none;
+}
+
+form input:not([type="submit"]) {
+  border-bottom: 1px solid;
+}
+
+form input:not([type="submit"]):hover,
+form input:not([type="submit"]):focus {
+  color: aqua;
+}
+
+form input[type="submit"] {
+  box-shadow: 1px 1px 4px 0px;
+  transition: 0.3s;
+}
+
+form input[type="submit"]:hover {
+  box-shadow: none;
+}
+
+.alert {
+  border: 1px solid;
+  border-radius: 4px;
+  padding: 12px;
+  display: none;
+}
+
+.success {
+  display: block;
+  color: green;
+  background: lightgreen;
+}
+
+.error {
+  display: block;
+  color: red;
+  background: pink;
+}
