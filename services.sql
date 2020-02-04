@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 21 2019 г., 17:09
+-- Время создания: Фев 04 2020 г., 17:39
 -- Версия сервера: 10.3.13-MariaDB-log
 -- Версия PHP: 7.1.32
 
@@ -41,11 +41,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `id_user`, `id_service`, `date`, `done`) VALUES
-(1, 1, 2, '2019-11-01', 1),
-(2, 2, 1, '2019-11-02', 1),
-(3, 1, 1, '2019-11-03', 0),
-(4, 1, 2, '2019-11-04', 1),
-(5, 2, 1, '2019-11-05', 0);
+(34, 2, 1, '2020-02-04', 0),
+(35, 3, 1, '2020-02-20', 0);
 
 -- --------------------------------------------------------
 
@@ -56,16 +53,17 @@ INSERT INTO `orders` (`id`, `id_user`, `id_service`, `date`, `done`) VALUES
 CREATE TABLE `services` (
   `id` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `done` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `services`
 --
 
-INSERT INTO `services` (`id`, `title`, `description`) VALUES
-(1, '1 service', 'Nice Service'),
-(2, '2 service', 'Second Service');
+INSERT INTO `services` (`id`, `title`, `description`, `done`) VALUES
+(1, 'Nice Service', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pellentesque viverra nulla vitae laoreet. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam venenatis sem ac diam dictum, ac pretium risus lacinia. Praesent in quam congue, scelerisque ante vel, volutpat felis. Donec est sapien, ultricies a quam in, interdum vulputate ante. Duis vel ex justo. Morbi odio lorem, varius sit amet urna a, vehicula accumsan arcu. Suspendisse tempus iaculis nibh at bibendum. Mauris lectus sem, pulvinar sit amet consectetur at, scelerisque ac nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.', 0),
+(2, 'Second Service', 'Maecenas nec magna vitae lacus ornare lacinia at nec urna. Pellentesque malesuada, eros at faucibus dapibus, purus velit ultrices nisl, et commodo nunc ligula varius magna. Aenean vitae dui arcu. Donec efficitur urna elit, at gravida dui bibendum id. Curabitur ligula urna, faucibus id enim et, commodo maximus massa. Ut ac nibh quis risus tincidunt auctor. Mauris sapien nisi, rutrum eget convallis ut, mollis in tortor. Donec gravida augue eu nunc dictum pharetra. Donec tristique nibh risus, pulvinar ultricies libero aliquet vel.', 0);
 
 -- --------------------------------------------------------
 
@@ -122,7 +120,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT для таблицы `services`

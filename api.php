@@ -23,6 +23,11 @@ $ROUTE = mb_strtolower( $_SERVER[ 'REQUEST_URI' ] );
 $ROUTE_ARR = explode( '/', $ROUTE );
 if ( !$ROUTE_ARR[0] ) array_shift( $ROUTE_ARR );
 if ( !end( $ROUTE_ARR ) ) array_pop( $ROUTE_ARR );
+//проаеряем, есть ли параметры URL
+if ( $pos_of_params = strrpos($ROUTE_ARR[1], '?') ) {
+    $end = count($ROUTE_ARR) - 1;
+    $ROUTE_ARR[ $end ] = substr($ROUTE_ARR[ $end ], 0, $pos_of_params);
+}
 
 
 //получаем права
@@ -48,7 +53,6 @@ if ( $ROUTE_ARR[0] !== 'api' ) {
 
 
 switch ( $ROUTE_ARR[1] ) {
-    
     case 'auth':
         if ( $METHOD !== 'POST' ) {
             http_response_code(405); //Method Not Allowed

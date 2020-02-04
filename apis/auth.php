@@ -25,7 +25,7 @@ switch ( $ROUTE_ARR[2] ) {
         if ( $ver ) {
             $jwtO = new JWTAuth( $user['id'], $user['login'] );
             $jwt = $jwtO -> get();
-            $RESPONSE = ['name' => $user['name'], 'jwt' => $jwt];
+            $RESPONSE = ['name' => $user['name'], 'jwt' => $jwt, 'rights' => $user['rights']];
         } else {
             http_response_code(401); //Unauthorized
             $RESPONSE = ['error' => 'Invalid login or password'];

@@ -14,17 +14,24 @@ switch ( $METHOD ) {
         $RESPONSE = $order;
         break;
 
-//    case 'PUT':
-//        if ($AUTH['rights'] == 2) {
-//            $t = R::load( $TABLE, $ID );
-//            add_keys_to_obj( $t, $POST_DATA );
-//            R::store( $t );
-//            $RESPONSE = ['message' => 'Changed successfully!'];
-//        } else {
-//            http_response_code(401); //Unauthorized
-//            $RESPONSE = ['error' => 'Unauthorized'];
-//        }
-//        break;
+    case 'PUT':
+        switch ( $AUTH['rights'] ) {
+            case 0:
+                http_response_code(401); //Unauthorized
+                $RESPONSE = ['error' => 'Unauthorized'];
+                break;
+            case 1:
+                http_response_code(403); //Forbidden
+                $RESPONSE = ['error' => 'Forbidden'];
+                break;
+            case 2:
+                $t = R::load( $TABLE, $ID );
+                $t['done'] = true;
+                R::store( $t );
+                $RESPONSE = ['message' => 'Changed successfully!'];
+                break;
+        }
+        break;
 
 //    case 'DELETE':
 //        if ($AUTH['rights'] == 2) {
